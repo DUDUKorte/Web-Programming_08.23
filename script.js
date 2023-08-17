@@ -1,4 +1,4 @@
-const apiKey = 'A400F13A62A8DA8A22F14B4777AC988B';
+const apiKey = 'D005C0AE66AA55F8A7A14342F0DE17D7';
 
 async function searchGameInSteam(name) {
 
