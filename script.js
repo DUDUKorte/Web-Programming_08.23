@@ -2,7 +2,7 @@ const apiKey = 'A400F13A62A8DA8A22F14B4777AC988B';
 
 async function searchGameInSteam(name) {
 
-    const response = await fetch(`https://api.steampowered.com/ISteamApps/GetAppList/v2/`, {mode: 'no-cors'});
+    const response = await fetch(`https://api.steampowered.com/ISteamApps/GetAppList/v2/`);
     console.log(response)
     const data = await response.json();
     
