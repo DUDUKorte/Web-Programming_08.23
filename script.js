@@ -1,45 +1,63 @@
-const apiKey = 'D005C0AE66AA55F8A7A14342F0DE17D7';
+const apiKey = 'D21B2F1C42687216FD59600511DF68A7';
+const steamData = document.getElementById("steamData");
 
 async function searchGameInSteam(name) {
+    //https://cors-anywhere.herokuapp.com/ << usar proxy para contornar política CORS
 
-    const response = await fetch(`https://api.steampowered.com/ISteamApps/GetAppList/v2/`);
-    console.log(response)
+    //Utilização da API SteamWorks
+    const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamApps/GetAppList/v2`;
+    const response = await fetch(url);
     const data = await response.json();
+
+    console.log(data)
     
+    //Pegar apenas os jogos dos dados
     const games = data.applist.apps;
+    //Transformar nome do jogo pesquisado para lowercase
     const searchTerm = name.toLowerCase();
-    
+
+    //Encontrar Jogo pesquisado na lista
     const matchingGames = games.filter(game => game.name.toLowerCase().includes(searchTerm));
-    
+
     return matchingGames;
 
 }
 
-// Chamar a função para buscar jogos com o nome "Counter-Strike"
-searchGameInSteam('Counter-Strike').then(result => {
+async function searchPlayerById(){
+    const steamId = "76561198408735369";
+    const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
+    const response = await fetch(url);
+    console.log(response)
+    const data = await response.json();
+    console.log(data);
+}
+
+async function searchGamesPlayed(){
+    try{
+        const steamId = "76561198408735369";
+        const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${apiKey}&steamid=${steamId}`
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const games = data.response.games;
+        console.log(games);
+
+        for(const game of games){
+            const appId = game.appid;
+            const playedTimeMin = game.playtime_2weeks;
+
+            console.log(playedTimeMin, ' : ', game);
+        }
+    }catch (error){
+        console.log("Houve um erro inesperado, tente novamente mais tarde:", error);
+    }
+}
+
+const nomeDoJogo = 'Call of duty'
+// Chamar a função para buscar jogos com o nome procurado
+searchGameInSteam(nomeDoJogo).then(result => {
     console.log('Jogos encontrados:', result);
 });
 
-
-// const apiKey = 'A400F13A62A8DA8A22F14B4777AC988B';
-// const steamId = '76561198408735369'; // Substitua pelo Steam ID do jogador que deseja consultar
-
-// const steamDataElement = document.getElementById('steamData');
-
-// // Função para fazer uma solicitação à API da Steam e manipular a resposta
-// async function fetchSteamProfile() {
-//     const response = await fetch(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`, {mode:'no-cors'});
-//     console.log(response)
-//     const data = await response.json();
-//     console.log(data)
-//     const playerData = data.response.players[0];
-//     steamDataElement.innerHTML = `
-//         <p>Nome do jogador: ${playerData.personaname}</p>
-//         <p>Status: ${playerData.personastate === 0 ? 'Offline' : 'Online'}</p>
-//         <p>URL do perfil: <a href="${playerData.profileurl}" target="_blank">${playerData.profileurl}</a></p>
-//         <img src="${playerData.avatarfull}" alt="Avatar do jogador">
-//     `;
-// }
-
-// // Chamar a função para buscar os dados do jogador ao carregar a página
-// fetchSteamProfile();
+searchPlayerById();
+searchGamesPlayed();
