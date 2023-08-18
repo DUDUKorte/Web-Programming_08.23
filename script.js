@@ -8,8 +8,6 @@ async function searchGameInSteam(name) {
     const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamApps/GetAppList/v2`;
     const response = await fetch(url);
     const data = await response.json();
-
-    console.log(data)
     
     //Pegar apenas os jogos dos dados
     const games = data.applist.apps;
@@ -23,41 +21,54 @@ async function searchGameInSteam(name) {
 
 }
 
-async function searchPlayerById(){
-    const steamId = "76561198408735369";
-    const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
-    const response = await fetch(url);
-    console.log(response)
-    const data = await response.json();
-    console.log(data);
+async function searchPlayerById(steamId){
+    //const steamId = "76561198408735369";
+
+    try{
+        const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log("Player Details: ", data);
+    }catch(error){
+        console.log("Muitas tentativas seguidas. Por favor, aguarde e tente novamente mais tarde: ", error)
+    }
 }
 
-async function searchGamesPlayed(){
+async function searchGamesPlayed(steamId){
     try{
-        const steamId = "76561198408735369";
+        //const steamId = "76561198408735369";
+        
         const url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${apiKey}&steamid=${steamId}`
         const response = await fetch(url);
         const data = await response.json();
 
         const games = data.response.games;
-        console.log(games);
+        console.log("All played games: ", games);
 
         for(const game of games){
             const appId = game.appid;
             const playedTimeMin = game.playtime_2weeks;
 
-            console.log(playedTimeMin, ' : ', game);
+            console.log(playedTimeMin, ' : ', game.name);
         }
     }catch (error){
         console.log("Houve um erro inesperado, tente novamente mais tarde:", error);
     }
 }
 
-const nomeDoJogo = 'Call of duty'
-// Chamar a função para buscar jogos com o nome procurado
-searchGameInSteam(nomeDoJogo).then(result => {
-    console.log('Jogos encontrados:', result);
-});
+function executar_main(){
+    console.clear();
+    
+    //const nomeDoJogo = 'Call of duty'
+    const nomeDoJogo = document.getElementById("searchGame").value;
+    // Chamar a função para buscar jogos com o nome procurado
+    searchGameInSteam(nomeDoJogo).then(result => {
+        console.log('Jogos encontrados:', result);
+    });
 
-searchPlayerById();
-searchGamesPlayed();
+    const steamId = document.getElementById("steamId").value;
+    searchPlayerById(steamId);
+    searchGamesPlayed(steamId);
+}
+
+document.getElementById("button").addEventListener("click", executar_main);
