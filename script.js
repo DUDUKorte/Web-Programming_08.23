@@ -1,8 +1,17 @@
 const apiKey = 'D21B2F1C42687216FD59600511DF68A7';
 const htmlsteamId = document.getElementById("steamId");
 const nomeDoJogo = document.getElementById("searchGame");
-
 const useCorsPolicy = true;
+let onlineGamesSteamDatabase;
+
+//Load all necessary databases
+async function load_databases(){
+    useCorsPolicy ? url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamApps/GetAppList/v2` : url = `https://api.steampowered.com/ISteamApps/GetAppList/v2`;
+    onlineGamesSteamDatabase = await fetch(url);
+    console.log("databases loaded!")
+}
+
+this.load_databases();
 
 function tooManyRequestsWarning(reverse = false, text = "Too Many Request. Please, wait and try again later."){
     if(reverse){
@@ -88,12 +97,11 @@ async function searchGameInSteam() {
     if(name){
         //https://cors-anywhere.herokuapp.com/ << usar proxy para contornar política CORS
 
-        let data;
         //Pegando todos os jogos com a api
+        let data;
+        let response = onlineGamesSteamDatabase;
+
         try{
-            let url;
-            useCorsPolicy ? url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamApps/GetAppList/v2` : url = `https://api.steampowered.com/ISteamApps/GetAppList/v2`;
-            const response = await fetch(url);
             if(response.status == 429){
                 tooManyRequestsWarning(false, "Too many requests. Using offline database");
             }else{
@@ -102,7 +110,7 @@ async function searchGameInSteam() {
             data = await response.json(); //Pega o json com os dados de todos os jogos da steam
         }catch{
             //Get offline array if API fails
-            const response = await fetch('steam_games.json');
+            response = await fetch('steam_games.json');
             data = await response.json();
         }
 
@@ -235,7 +243,7 @@ async function searchGamesPlayed(){
     }
 }
 
-console.log("Steamworks API Site Version 1.3")
+console.log("Steamworks API Site Version 1.4")
 
 document.getElementById("searchGame").addEventListener("focusout", searchGameInSteam);
 document.getElementById("steamId").addEventListener("focusout", searchPlayerById);
