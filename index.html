@@ -70,22 +70,24 @@
             <!--Inputs-->
             <div class="_row p-3 m-3">
                 <div class="inputbox">
-                    <input type="text" id="steamId" required>
-                    <label for="steamId">SteamID</label>
+                    <input type="text" id="steamId" placeholder="example: 'esquilo.png' type 'esquilopng' or 1234..." required>
+                    <label for="steamId">SteamID Or Username </label>
                 </div>
                 <div class="inputbox">
-                    <input type="text" id="searchGame" required>
+                    <input type="text" id="searchGame" placeholder="Please, specify: 'call of duty: which one'" required>
                     <label for="searchGame">Search Game</label>
                 </div>
             </div>
 
             <!--Criar cards dentro da div abaixo-->
-            <div class="row g-4 align-items-lg-center justify-content-between">
+            <div id="games-container" class="row g-4 align-items-lg-center justify-content-between">
                 <!--Início card game-->
                 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="rounded shadow overflow-hidden card-game">
                         <div class="position-relative">
-                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
+                            <a href="https://store.steampowered.com/app/1174180/">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +95,9 @@
                 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="rounded shadow overflow-hidden card-game">
                         <div class="position-relative"> 
-                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
+                            <a href="https://store.steampowered.com/app/1938090/">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
+                            </a>        
                         </div>
                     </div>  
                 </div>
@@ -113,21 +117,25 @@
                     <div class="row gx-0">
                         <div class="col-lg-auto py-2 d-none d-lg-block wow fadeInUp">
                             <div class="rounded shadow overflow-hidden w-100 h-100 p-0 d-flex justify-content-start bg-steam">
-                                <img class="px-3 align-items-center py-2 rounded-circle" src="https://avatars.steamstatic.com/34adcd2a2c63e40ce323f872f4781ef5ee322413_full.jpg" alt="imagem">
+                                <img id="userImage" class="px-3 align-items-center py-2 rounded-circle" src="https://avatars.steamstatic.com/34adcd2a2c63e40ce323f872f4781ef5ee322413_full.jpg" alt="imagem">
                                 <div class="m-0 text-primary justify-content-start py-2 px-lg-3 align-items-start">
-                                    <h1 id="player_username">Username</h1>
+                                    <h1 id="playerUsername" >Username</h1>
                                     <ul class="list-unstyled">
                                         <li>
                                             <span>Time Created: </span>
-                                            <small class="">01/01/1970</small>
+                                            <small class="" id="userTimeCreated">01/01/1970</small>
                                         </li>
                                         <li>
                                             <span>Profile URL: </span>
-                                            <a href="https://steamcomunity.com/id/example" class="text-primary hover-steam ">https://steamcomunity.com/id/example</a>
+                                            <a id="userUrlSteam" href="https://steamcomunity.com/id/example" class="text-primary hover-steam ">https://steamcomunity.com/id/example</a>
                                         </li>
                                         <li>
                                             <span>Last logoff:</span>
-                                            <small class="">01/01/1970</small>
+                                            <small id="userLastLogoff" class="">01/01/1970</small>
+                                        </li>
+                                        <li>
+                                            <span>Games Count:</span>
+                                            <small id="game-count" class="">000</small>
                                         </li>
                                     </ul>
                                 </div>
@@ -146,12 +154,14 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.5s">
                 <h1 class="section-title text-center text-primary mb-4">Recently Played</h1>
             </div>
-            <div class="row g-4 align-items-lg-center justify-content-between">
+            <div id="user-games-container" class="row g-4 align-items-lg-center justify-content-between">
                 <!--Início card game-->
                 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="rounded shadow overflow-hidden card-game">
-                        <div class="position-relative "> 
-                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
+                        <div class="position-relative">
+                            <a href="https://store.steampowered.com/app/1174180/">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -159,7 +169,9 @@
                 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="rounded shadow overflow-hidden card-game">
                         <div class="position-relative"> 
-                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
+                            <a href="https://store.steampowered.com/app/1938090/">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
+                            </a>        
                         </div>
                     </div>  
                 </div>
@@ -206,6 +218,7 @@
     
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script src="script.js"></script>
     </body>
     
     </html>
