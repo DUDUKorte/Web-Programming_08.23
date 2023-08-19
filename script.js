@@ -197,6 +197,8 @@ async function searchGamesPlayed(){
     }
 }
 
+console.log("Steamworks API Site Version 1.1")
+
 document.getElementById("searchGame").addEventListener("focusout", searchGameInSteam);
 document.getElementById("steamId").addEventListener("focusout", searchPlayerById);
 document.getElementById("steamId").addEventListener("focusout", searchGamesPlayed);
