@@ -85,7 +85,8 @@ async function searchGameInSteam() {
             //pega id do jogo
             const gameId = game.appid;
             //pega a url da imagem do jogo
-            let gameIconURL = `https://cdn.akamai.steamstatic.com/steam/apps/${gameId}/header.jpg?t=1671485009`; 
+            let gameIconURL; 
+            useCorsPolicy ? gameIconURL = `https://cors-anywhere.herokuapp.com/https://cdn.akamai.steamstatic.com/steam/apps/${gameId}/header.jpg?t=1671485009` : gameIconURL = `https://cdn.akamai.steamstatic.com/steam/apps/${gameId}/header.jpg?t=1671485009`;
             
             //Teste para não ocorrer erro 404 e parar o código
             const test = await fetch(gameIconURL);
@@ -197,7 +198,7 @@ async function searchGamesPlayed(){
     }
 }
 
-console.log("Steamworks API Site Version 1.1")
+console.log("Steamworks API Site Version 1.2")
 
 document.getElementById("searchGame").addEventListener("focusout", searchGameInSteam);
 document.getElementById("steamId").addEventListener("focusout", searchPlayerById);

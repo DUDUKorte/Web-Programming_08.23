@@ -132,7 +132,7 @@
     position: absolute;
     background-color: var(--gpStoreGrey);
     color: white;
-    width: 100%;
+    width: 80%;
     height: 3px;
     bottom: 0;
     box-shadow: none;
