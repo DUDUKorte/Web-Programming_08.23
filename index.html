@@ -38,72 +38,76 @@
 <body class="bg-steam-static">
     <div class="container-fluid p-0">
 
-    <!-- Header PRONTO -->
-    <div class="container-fluid bg-steam-navbar py-xxl-0">
-        <div class="row gx-0">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-2 p-0 d-flex align-items-center justify-content-start">
-                    <img class="rounded-circle py-3" src="https://api.nuget.org/v3-flatcontainer/facepunch.steamworks/2.0.0/icon">
-                    <h1 class="m-0 text-primary text-uppercase align-content-lg-center">SteamWorks API</h1></img>
-                </a>
+        <!-- Header PRONTO -->
+        <div class="container-fluid bg-steam-navbar py-xxl-0">
+            <div class="row gx-0">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a href="index.html" class="navbar-brand w-100 h-100 m-2 p-0 d-flex align-items-center justify-content-start">
+                        <img class="rounded-circle py-3" src="https://api.nuget.org/v3-flatcontainer/facepunch.steamworks/2.0.0/icon">
+                        <h1 class="m-0 text-primary text-uppercase align-content-lg-center">SteamWorks API</h1></img>
+                    </a>
+                </div>
+                <div class="col-lg-9">
+                    <nav class="navbar navbar-expand-lg navbar-dark p-lg-3 w-100 h-100 p-0 m-2">
+                        <div class="collapse navbar-collapse justify-content-end  align-items-center" id="navbarCollapse">
+                            <div class="navbar-nav py-0 m-0">
+                                <a href="index.html" class="nav-item nav-link active">Home</a>
+                                <a href="index.html" class="nav-item nav-link">Store</a>
+                                <a href="index.html" class="nav-item nav-link">Comunity</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg navbar-dark p-lg-3 w-100 h-100 p-0 m-2">
-                    <div class="collapse navbar-collapse justify-content-end  align-items-center" id="navbarCollapse">
-                        <div class="navbar-nav py-0 m-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="index.html" class="nav-item nav-link">Store</a>
-                            <a href="index.html" class="nav-item nav-link">Comunity</a>
+        </div>
+        <!-- Header -->
+
+        <!--Principal content-->
+        <div class="container-fluid py-5 bg-steam">
+            <div class="container">
+                
+                <!--Inputs-->
+                <div class="_row p-3 m-3 row g-4 align-items-center justify-content-between">
+                    <div class="inputbox wow fadeInUp">
+                        <input type="text" id="steamId" placeholder="example: 'esquilo.png' type 'esquilopng' or 1234..." required>
+                        <label for="steamId">SteamID Or Username </label>
+                        <small class="text-danger toomany" id="tooManyRq"></small>
+                    </div>
+                    
+                    <div class="inputbox wow fadeInUp">
+                        <input type="text" id="searchGame" placeholder="Please, specify: 'call of duty: which one'" required>
+                        <label for="searchGame">Search Game</label>
+                    </div>
+                </div>
+
+                <!--Criar cards dentro da div abaixo-->
+                <div id="games-container" class="row g-4 align-items-lg-center justify-content-between">
+                    <!--Início card game-->
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="rounded shadow overflow-hidden card-game">
+                            <div class="position-relative">
+                                <a href="https://store.steampowered.com/app/1174180/">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
+                                </a>
                             </div>
                         </div>
                     </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Header -->
-
-    <!--Principal content-->
-    <div class="container-fluid py-5 bg-steam">
-        <div class="container">
-            
-            <!--Inputs-->
-            <div class="_row p-3 m-3 row g-4 align-items-center justify-content-between">
-                <div class="inputbox wow fadeInUp">
-                    <input type="text" id="steamId" placeholder="example: 'esquilo.png' type 'esquilopng' or 1234..." required>
-                    <label for="steamId">SteamID Or Username </label>
-                </div>
-                <div class="inputbox wow fadeInUp">
-                    <input type="text" id="searchGame" placeholder="Please, specify: 'call of duty: which one'" required>
-                    <label for="searchGame">Search Game</label>
-                </div>
-            </div>
-
-            <!--Criar cards dentro da div abaixo-->
-            <div id="games-container" class="row g-4 align-items-lg-center justify-content-between">
-                <!--Início card game-->
-                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="rounded shadow overflow-hidden card-game">
-                        <div class="position-relative">
-                            <a href="https://store.steampowered.com/app/1174180/">
-                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1671485009" alt="" class="card-img-bottom card-game-img">
-                            </a>
-                        </div>
+                    <!--Fim card game-->
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="rounded shadow overflow-hidden card-game">
+                            <div class="position-relative"> 
+                                <a href="https://store.steampowered.com/app/1938090/">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
+                                </a>        
+                            </div>
+                        </div>  
                     </div>
                 </div>
-                <!--Fim card game-->
-                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="rounded shadow overflow-hidden card-game">
-                        <div class="position-relative"> 
-                            <a href="https://store.steampowered.com/app/1938090/">
-                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg?t=1671485009" alt="placeholder" class="card-img-bottom card-game-img">
-                            </a>        
-                        </div>
-                    </div>  
-                </div>
             </div>
         </div>
-    </div>
+
+        
 
         <!-- Player Card -->
         <div class="container-fluid py-5">
@@ -147,6 +151,10 @@
         </div>
     </div>
     <!-- Cards -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-outline-primary btn-dark back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- Recently Played Cards -->
     <div class="container-fluid">

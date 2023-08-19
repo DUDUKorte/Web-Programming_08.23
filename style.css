@@ -127,6 +127,9 @@
     cursor: text;
 }
 
+.toomany{
+	padding-bottom: 34px;
+}
 
 .inputbox input{
     position: absolute;
