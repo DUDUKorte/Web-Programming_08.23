@@ -132,6 +132,7 @@ async function searchGameInSteam() {
             const gameId = game.appid;
             //pega a url da imagem do jogo
             let gameIconURL = `https://cdn.akamai.steamstatic.com/steam/apps/${gameId}/header.jpg?t=1671485009`;
+            console.log("GAME ID: " + gameId + " NOME DO ITEM: " + game.name);
             
             //Teste para não ocorrer erro 404 e parar o código
             //const test = await fetch(gameIconURL);
