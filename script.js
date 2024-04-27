@@ -1,13 +1,20 @@
 const apiKey = 'D21B2F1C42687216FD59600511DF68A7';
 const htmlsteamId = document.getElementById("steamId");
 const nomeDoJogo = document.getElementById("searchGame");
-const useCorsPolicy = true;
+let useCorsPolicy = false;
 let onlineGamesSteamDatabase;
 
 //Load all necessary databases
 async function load_databases(){
     useCorsPolicy ? url = `https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamApps/GetAppList/v2` : url = `https://api.steampowered.com/ISteamApps/GetAppList/v2`;
     onlineGamesSteamDatabase = await fetch(url);
+    try{
+        if(onlineGamesSteamDatabase.status == 429){
+            useCorsPolicy = true;
+        }
+    }catch{
+        console.log("Failed to check API request status");
+    }
     console.log("databases loaded!")
 }
 
@@ -244,7 +251,7 @@ async function searchGamesPlayed(){
     }
 }
 
-console.log("Steamworks API Site Version 1.4")
+console.log("Steamworks API Site Version 1.5")
 
 document.getElementById("searchGame").addEventListener("focusout", searchGameInSteam);
 document.getElementById("steamId").addEventListener("focusout", searchPlayerById);
